@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+  --background: #19171a;
+  --cards: #201e21;
+  --fg: #d8dee9;
+  --sfg: #2c292e;
+}
+
+.lighttheme {
+  --fg: #3a3a3a;
+  --sfg: #494949;
+  --background: #f5f5f5;
+  --cards: #e4e6e6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: 0.2s ease-in-out;
+}
+body {
+    min-height: 100vh;
+    max-width: 100vw;
+    display: grid;
+    grid-template-rows: 8rem 1fr 5rem;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--background);
+    padding: 0 10vw;
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: var(--sfg);
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--background)
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--sfg);
+    border-radius: 10px;
+    border: 3px solid var(--background);
+  }
+
+
+/* header styling */
+
+
+header  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    color: var(--fg)
+}
+
+#themeButton {
+    position: absolute;
+    margin: 2em 2em 0 0;
+    right: 0;
+    top: 0;
+    color: var(--fg);
+    border: none;
+    cursor: pointer;
+    background-color: #00000000;
+}
+
+button {
+    background-color: #00000000;
+    border: none;
+}
+button:hover {
+    cursor: pointer;
+}
+
+button svg {
+    stroke: var(--fg);
+}
+
+/* Card styling */
+
+.card_container {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-auto-rows: 230px;
+    margin-bottom: 30px;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:    "title title"
+                            "author author"
+                            "genre genre"
+                            "pages pages"
+                            "status delete";
+    background-color: var(--cards);
+    box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
+    border-radius: 5px;
+    padding: 1rem;
+    column-gap: 1rem;
+    animation: slideIn 500ms ease;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-50%);
+    filter: blur(5px);
+    opacity: 0;
+  }  
+  100% {
+    transform: translateX(0);
+    opacity: 1;	
+    filter: blur(0);
+  }
+}
+
+#addBook { grid-area: 1/1/span 5/ span 2;}
+.card_title { grid-area: title;}
+.card_author { grid-area: author;}
+.card_genre { grid-area: genre;}
+.card_pages { grid-area: pages;}
+.card_status { grid-area: status;}
+.card_delete { grid-area: delete;}
+
+
+.card:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 10px 10px rgb(0 0 0 / 35%);
+}
+
+.card_element  {
+    display: flex;
+    padding: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fg);
+}
+
+button.card_element {
+    margin-top: 5px;
+    justify-content: center;
+}
+
+button.card_element:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+}
+
+.card_element > span {
+    padding-left: 1rem;
+    font-weight: 600;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--cards);
+    
+    padding: 1.5rem;
+    
+}
+
+footer p {
+    text-align: center;;
+    color: var(--fg);
+    font-size: 1.2rem;
+}
+
+  /* Form Styling */
+
+  .modal {
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+  }
+
+   form {
+    background-color: #fefefe;
+    margin: 15% auto;
+    width: 30%; 
+    background-color: var(--cards);
+    box-shadow: 0 5px 30px rgb(0 0 0 / 35%);
+    border-radius: 5px;
+    padding: 1rem;
+    animation: slideIn 800ms ease;;
+    }
+
+
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+  }
+
+  label{
+    color: var(--fg);
+    margin-bottom: 8px;
+    font-weight: bolder;
+  }
+
+  input, select {
+    color: var(--fg);
+    background-color: var(--background);
+    font-size: 1rem;
+    padding: 0 1rem;
+    font-weight: 700;
+    border-radius: 6px;
+    border: none;
+    height: 2.5rem;
+  }
+
+  .button-group {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    
+  }
+
+   .form-button{
+    font-weight: bolder;
+    display: flex;
+    align-items: center;;
+    justify-content: center;
+    padding: 1.5rem;
+    color: var(--fg);
+    height: 2rem;
+  }
+
+  .form-button:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 10px 10px rgb(0 0 0 / 35%);
+  }
+  
+
+  textarea, input, select { outline: none; }
+
+
+
+
+
+  @media screen and (max-width: 800px) {
+    .card_container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 100px;
+        grid-auto-rows: 250px;
+    }
+    .quote {
+        font-size: 0.8rem;
+    }
+    form {
+        width: 80%;
+    }
+    label {
+      font-size: 0.9rem;
+    }
+    input, select {
+      font-size: 0.8rem;
+    }
+    footer {
+      padding: 1rem;
+    }
+  }

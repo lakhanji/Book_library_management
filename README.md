@@ -1,2 +1,2 @@
-# Book_library_management
-website is used for library management using html and css and javascripts
+# Book Library
+ Library Web App to keep track of ur read and planning to read books
